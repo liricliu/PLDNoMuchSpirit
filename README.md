@@ -1,0 +1,2 @@
+# PLDNoMuchSpirit
+一个Triggernometry插件，可以防止在安魂祈祷期间打五下圣灵
