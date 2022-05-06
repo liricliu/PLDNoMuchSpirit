@@ -1,0 +1,315 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder FFXIVJobFilterEnabled="True" FFXIVJobFilter="262144" Id="2f641d26-b3b9-4587-8cf4-e243a32e9b09" Name="骑士安魂防手残" Enabled="true">
+    <Folders />
+    <Triggers>
+      <Trigger Enabled="true" Name="施放安魂祈祷" Id="e038af9e-744c-4485-96d3-491ea478cce5" RegularExpression="ActionEffect ..:[0-9A-F]{8}:(?&lt;name&gt;.*):[0-9A-F]{4}:安魂祈祷:">
+        <Actions>
+          <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="spirity" VariableExpression="8" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="ec92f4e7-69c0-4160-8850-d13b4655eaa3" TriggerForce="regexp" ActionType="Trigger" Asynchronous="False">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="3" VariableOp="SetNumeric" VariableName="prayStack" VariableExpression="4" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="4" VariableOp="SetNumeric" VariableName="combo1Casted" VariableExpression="0" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="5" VariableOp="SetNumeric" VariableName="combo2Casted" VariableExpression="0" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="6" VariableOp="SetNumeric" VariableName="combo3Casted" VariableExpression="0" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="7" VariableOp="SetNumeric" VariableName="combo4Casted" VariableExpression="0" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="8" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback" ExecutionDelayExpression="30500">
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${var:combo1Casted}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+            </Condition>
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="Or">
+          <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+        </Condition>
+      </Trigger>
+      <Trigger Enabled="true" Name="施放连击4段" Id="85d92184-a57b-4dc7-9b12-efe80cee8bd2" RegularExpression="ActionEffect ..:[0-9A-F]{8}:(?&lt;name&gt;.*):[0-9]{4}:英勇之剑:">
+        <Actions>
+          <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="combo4Casted" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="Or">
+          <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+        </Condition>
+      </Trigger>
+      <Trigger Enabled="true" Name="消耗安魂祈祷" Id="f710971c-f86d-43f8-be5e-549d2387318c" RegularExpression="ActionEffect ..:[0-9A-F]{8}:(?&lt;name&gt;.*):[0-9A-F]{4}:(圣灵|圣环):">
+        <Actions>
+          <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="prayStack" VariableExpression="${var:prayStack}-1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="timeStamp" VariableExpression="${_timestamp}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${var:prayStack}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+          <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+          <ConditionSingle Enabled="true" ExpressionL="${var:timeStamp}" ExpressionTypeL="Numeric" ExpressionR="${_timestamp}-1" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+        </Condition>
+      </Trigger>
+      <Trigger Enabled="true" Name="消耗倒数第二层安魂祈祷" Id="6df26861-5ce7-4b8b-9684-9483ec5a4d4e" RegularExpression="ActionEffect ..:[0-9A-F]{8}:(?&lt;name&gt;.*):[0-9A-F]{4}:(圣灵|圣环):">
+        <Actions>
+          <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="prayStack" VariableExpression="${var:prayStack}-1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" NamedCallbackName="command" NamedCallbackParam="/hotbar set 悔罪 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback">
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[1].level}" ExpressionTypeL="Numeric" ExpressionR="80" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+            </Condition>
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${var:prayStack}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+          <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+          <ConditionSingle Enabled="true" ExpressionL="${var:timeStamp}" ExpressionTypeL="Numeric" ExpressionR="${_timestamp}-1" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+        </Condition>
+      </Trigger>
+      <Trigger Enabled="true" Name="消耗安魂祈祷（奶）" Id="f2075508-0457-40ae-a3af-eba252fe435d" RegularExpression="ActionEffect ..:[0-9A-F]{8}:(?&lt;name&gt;.*):[0-9A-F]{3}:(深仁厚泽):">
+        <Actions>
+          <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="prayStack" VariableExpression="${var:prayStack}-1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="timeStamp" VariableExpression="${_timestamp}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${var:prayStack}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+          <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+          <ConditionSingle Enabled="true" ExpressionL="${var:timeStamp}" ExpressionTypeL="Numeric" ExpressionR="${_timestamp}-1" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+        </Condition>
+      </Trigger>
+      <Trigger Enabled="true" Name="消耗倒数第二层安魂祈祷（奶）" Id="2715d8a9-70c1-4535-a69e-0449fd80a41f" RegularExpression="ActionEffect ..:[0-9A-F]{8}:(?&lt;name&gt;.*):[0-9A-F]{3}:(深仁厚泽):">
+        <Actions>
+          <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="prayStack" VariableExpression="${var:prayStack}-1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" NamedCallbackName="command" NamedCallbackParam="/hotbar set 悔罪 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback">
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[1].level}" ExpressionTypeL="Numeric" ExpressionR="80" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+            </Condition>
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${var:prayStack}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+          <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+          <ConditionSingle Enabled="true" ExpressionL="${var:timeStamp}" ExpressionTypeL="Numeric" ExpressionR="${_timestamp}-1" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+        </Condition>
+      </Trigger>
+      <Trigger Enabled="true" Name="施放连击3段" Id="acf56882-585d-4bfa-9ffe-451d628e34e1" RegularExpression="ActionEffect ..:[0-9A-F]{8}:(?&lt;name&gt;.*):[0-9A-F]{4}:真理之剑:">
+        <Actions>
+          <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="combo3Casted" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback" ExecutionDelayExpression="30500">
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${var:combo4Casted}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+            </Condition>
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+      </Trigger>
+      <Trigger Enabled="true" Name="施放连击1段" Id="18d81d0f-bcda-4187-9ddf-cce88cb592e8" RegularExpression="ActionEffect ..:[0-9A-F]{8}:(?&lt;name&gt;.*):[0-9A-F]{4}:(悔罪):">
+        <Actions>
+          <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="combo1Casted" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback">
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[1].level}" ExpressionTypeL="Numeric" ExpressionR="90" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+            </Condition>
+          </Action>
+          <Action OrderNumber="3" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback" ExecutionDelayExpression="30500">
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${var:combo2Casted}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+              <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[1].level}" ExpressionTypeL="Numeric" ExpressionR="90" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+            </Condition>
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+      </Trigger>
+      <Trigger Enabled="true" Name="施放连击2段" Id="8b0a25da-38c8-400f-aa6c-a75257e8d07f" RegularExpression="ActionEffect ..:[0-9A-F]{8}:(?&lt;name&gt;.*):[0-9A-F]{4}:信念之剑:">
+        <Actions>
+          <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="combo2Casted" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback" ExecutionDelayExpression="30500">
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${var:combo3Casted}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+            </Condition>
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+      </Trigger>
+      <Trigger Enabled="true" Name="团灭后重置" Id="5fc49e61-60e0-4f6f-ad0a-87008a2d55a3" RegularExpression="^.{14} Director 21:.{8}:4000001[026]">
+        <Actions>
+          <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="spirity" VariableExpression="8" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="ec92f4e7-69c0-4160-8850-d13b4655eaa3" TriggerForce="regexp" ActionType="Trigger" Asynchronous="False">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="e038af9e-744c-4485-96d3-491ea478cce5" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="4" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="18d81d0f-bcda-4187-9ddf-cce88cb592e8" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="5" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="8b0a25da-38c8-400f-aa6c-a75257e8d07f" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="6" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="acf56882-585d-4bfa-9ffe-451d628e34e1" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+      </Trigger>
+      <Trigger Enabled="true" Name="连击被打断（王权沥血）" Id="2bd1f818-9d1d-4726-a2b2-106be2d8ebe3" RegularExpression="ActionEffect .{2}:.{8}:(?&lt;name&gt;.*):.{3}:(王权剑|沥血剑)">
+        <Actions>
+          <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="e038af9e-744c-4485-96d3-491ea478cce5" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="18d81d0f-bcda-4187-9ddf-cce88cb592e8" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="4" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="8b0a25da-38c8-400f-aa6c-a75257e8d07f" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="5" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="acf56882-585d-4bfa-9ffe-451d628e34e1" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+          <ConditionSingle Enabled="true" ExpressionL="${var:combo1Casted}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+        </Condition>
+      </Trigger>
+      <Trigger Enabled="true" Name="连击被打断（先锋暴乱）" Id="29bbfd83-405c-4aa4-bec5-12f060c3f4ef" RegularExpression="ActionEffect .{2}:.{8}:(?&lt;name&gt;.*):.{2}:(先锋剑|暴乱剑)">
+        <Actions>
+          <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="e038af9e-744c-4485-96d3-491ea478cce5" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="18d81d0f-bcda-4187-9ddf-cce88cb592e8" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="4" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="8b0a25da-38c8-400f-aa6c-a75257e8d07f" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="5" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="acf56882-585d-4bfa-9ffe-451d628e34e1" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+          <ConditionSingle Enabled="true" ExpressionL="${var:combo1Casted}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+        </Condition>
+      </Trigger>
+      <Trigger Enabled="true" Name="连击被打断（物理AOE）" Id="44f96183-cf41-4b6e-8f5a-fc5dd6797766" RegularExpression="ActionEffect .{2}:.{8}:(?&lt;name&gt;.*):.{4}:(全蚀斩|日珥斩)">
+        <Actions>
+          <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="e038af9e-744c-4485-96d3-491ea478cce5" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="18d81d0f-bcda-4187-9ddf-cce88cb592e8" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="4" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="8b0a25da-38c8-400f-aa6c-a75257e8d07f" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="5" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="acf56882-585d-4bfa-9ffe-451d628e34e1" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+          <ConditionSingle Enabled="true" ExpressionL="${var:combo1Casted}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+        </Condition>
+      </Trigger>
+      <Trigger Enabled="true" Name="死亡重置" Id="81f45c15-e48b-4aec-af82-6962c807509c" RegularExpression="^.{14} Death 19:.{8}:(?&lt;name&gt;[^:]+?):">
+        <Actions>
+          <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="spirity" VariableExpression="8" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerId="ec92f4e7-69c0-4160-8850-d13b4655eaa3" TriggerForce="regexp" ActionType="Trigger" Asynchronous="False">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="e038af9e-744c-4485-96d3-491ea478cce5" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="4" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="18d81d0f-bcda-4187-9ddf-cce88cb592e8" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="5" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="8b0a25da-38c8-400f-aa6c-a75257e8d07f" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="6" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="acf56882-585d-4bfa-9ffe-451d628e34e1" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+        </Condition>
+      </Trigger>
+      <Trigger Enabled="true" Name="连击被打断（魔法）" Id="10f3df2d-b2ef-44ba-bcc6-0ef28ea5baf9" RegularExpression="StartsCasting .{2}:.{8}:(?&lt;name&gt;.*):.{4}:(圣灵|圣环)">
+        <Actions>
+          <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/hotbar set 圣灵 ${var:spiritx} ${var:spirity}" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="NamedCallback">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="e038af9e-744c-4485-96d3-491ea478cce5" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="3" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="18d81d0f-bcda-4187-9ddf-cce88cb592e8" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="4" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="8b0a25da-38c8-400f-aa6c-a75257e8d07f" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="5" TextAuraFontSize="9" TextAuraFontName="宋体" TriggerOp="CancelTrigger" TriggerId="acf56882-585d-4bfa-9ffe-451d628e34e1" ActionType="Trigger">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+          <ConditionSingle Enabled="true" ExpressionL="${var:combo1Casted}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+        </Condition>
+      </Trigger>
+      <Trigger Enabled="true" Name="在此设置圣灵键位" Id="ec92f4e7-69c0-4160-8850-d13b4655eaa3" RegularExpression="">
+        <Actions>
+          <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="spiritx" VariableExpression="1" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+          <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="spirity" VariableExpression="8" TextAuraFontSize="9" TextAuraFontName="宋体" ActionType="Variable" Asynchronous="False">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+    </Triggers>
+  </ExportedFolder>
+</TriggernometryExport>
